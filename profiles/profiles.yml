@@ -1,0 +1,74 @@
+learn_dbt:
+  outputs:
+    dev:
+      account: lbb46877.us-east-1
+      database: analytics 
+      password: santhals123
+      role: TRANSFORM_ROLE
+      schema: db
+      threads: 1
+      type: snowflake
+      user: transform_user
+      warehouse: transform_wh 
+  target: dev
+learn_dbt1:
+  outputs:
+    dev:
+      dbname:
+      - dbname
+      host:
+      - host
+      pass:
+      - dev_password
+      port:
+      - port
+      schema:
+      - dev_schema
+      threads:
+      - 1 or more
+      type: postgres
+      user:
+      - dev_username
+    prod:
+      dbname:
+      - dbname
+      host:
+      - host
+      pass:
+      - prod_password
+      port:
+      - port
+      schema:
+      - prod_schema
+      threads:
+      - 1 or more
+      type: postgres
+      user:
+      - prod_username
+  target: dev
+
+learn_trino:
+  outputs:
+
+    dev:
+      type: trino
+      method: none  # optional, one of {none | ldap | kerberos}
+      user: admin
+      database: postgres
+      host: 127.0.0.1
+      port: 8080
+      schema: public
+      threads: 1
+
+    prod:
+      type: trino
+      method: none  # optional, one of {none | ldap | kerberos}
+      user: [prod_user]
+      password: [prod_password]  # required if method is ldap or kerberos
+      database: [database name]
+      host: [hostname]
+      port: [port number]
+      schema: [prod_schema]
+      threads: [1 or more]
+  
+  target: dev
